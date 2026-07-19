@@ -23,7 +23,7 @@ stage ('building the image by file again'){
      sh '''
                 docker stop my-nginx || true
                 docker rm my-nginx || true
-                docker run -d --name my-nginx -p 80:80 my-nginx:v1
+                docker run -d --name my-nginx -p 81:80 my-nginx:v1
                 '''
  } 
  }
