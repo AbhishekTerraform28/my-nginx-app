@@ -10,7 +10,7 @@ stages {
         echo "github url repos read done"
     } }
 
-stage ('building the image by file'){
+stage ('building the image by file again'){
     steps {
         echo "code till run here"
         sh 'docker build -t my-nginx:v1 .'
