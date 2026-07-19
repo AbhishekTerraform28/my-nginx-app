@@ -4,18 +4,28 @@ agent any
 
 stages {
 
-    stage ('clone'){
+    stage ('checkout from the repostiroy'){
         steps {
-        echo "cloning done"
-
+        git url: 'https://github.com/AbhishekTerraform28/my-nginx-app.git' branch: 'main'
+        echo "github url repos read done"
     } }
 
-stage ('building the repo'){
+stage ('building the image by file'){
     steps {
         echo "code till run here"
         sh 'docker build -t my-nginx:v1 .'
     }
 }
+
+ stage ('Run Container')
+ steps {
+     sh '''
+                docker stop my-nginx || true
+                docker rm my-nginx || true
+                docker run -d --name my-nginx -p 80:80 my-nginx:v1
+                '''
+ } 
+
 
 
 }
