@@ -13,7 +13,8 @@ stages {
 stage ('building the image by file again'){
     steps {
         echo "code till run here"
-        sh 'docker build -t my-nginx:v1 .'
+               sh 'docker build -f DockerFile -t my-nginx:v1 .'
+
     }
 }
 
