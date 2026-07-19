@@ -1,0 +1,24 @@
+pipeline {
+
+agent any 
+
+stages {
+
+    stage ('clone'){
+        steps {
+        echo "cloning done"
+
+    } }
+
+stage ('building the repo'){
+    steps {
+        echo "code till run here"
+        sh 'docker build -t my-nginx:v1 .'
+    }
+}
+
+
+}
+
+
+}
