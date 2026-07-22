@@ -10,6 +10,19 @@ stages {
         echo "github url repos read done"
     } }
 
+
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh '''
+            sonar-scanner \
+            -Dsonar.projectKey=my-nginx-app \
+            -Dsonar.sources=. \
+            '''
+        }
+    }
+}
+
 stage ('building the image by file again'){
     steps {
         echo "code till run here"
