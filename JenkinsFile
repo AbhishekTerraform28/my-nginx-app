@@ -16,12 +16,16 @@ stage('SonarQube Analysis') {
         script {
             def scannerHome = tool 'SonarScanner'
 
-            withSonarQubeEnv('SonarQube') {
-                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-nginx-app -Dsonar.sources=."
+            withEnv(["SONAR_SCANNER_OPTS=-Xmx512m"]) {
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-nginx-app -Dsonar.sources=."
+                }
             }
         }
     }
 }
+
+
 
 stage ('building the image by file again'){
     steps {
