@@ -13,12 +13,12 @@ stages {
 
 stage('SonarQube Analysis') {
     steps {
-        withSonarQubeEnv('SonarQube') {
-            sh '''
-            sonar-scanner \
-            -Dsonar.projectKey=my-nginx-app \
-            -Dsonar.sources=. \
-            '''
+        script {
+            def scannerHome = tool 'SonarScanner'
+
+            withSonarQubeEnv('SonarQube') {
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-nginx-app -Dsonar.sources=."
+            }
         }
     }
 }
