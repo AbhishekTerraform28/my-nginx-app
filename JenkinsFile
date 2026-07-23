@@ -62,8 +62,8 @@ stage('Login to ECR') {
 stage('Tag Docker Image') {
     steps {
         sh '''
-        docker tag my-nginx-app:latest \
-        891377082810.dkr.ecr.us-east-1.amazonaws.com/my-nginx-app:latest
+        docker tag my-nginx:v1 \
+        891377082810.dkr.ecr.us-east-1.amazonaws.com/my-nginx:v1
         '''
     }
 }
@@ -72,7 +72,7 @@ stage('Push Docker Image') {
     steps {
         sh '''
         docker push \
-        891377082810.dkr.ecr.us-east-1.amazonaws.com/my-nginx-app:latest
+        891377082810.dkr.ecr.us-east-1.amazonaws.com/my-nginx:v1
         '''
     }
 }
